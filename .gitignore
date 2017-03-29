@@ -1,0 +1,7 @@
+*.pyc
+__pycache__
+.idea
+surilo/settings/env.py
+*~
+db.sqlite3
+node_modules
