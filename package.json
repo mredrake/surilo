@@ -20,5 +20,13 @@
   "bugs": {
     "url": "https://github.com/awecode/surilo/issues"
   },
-  "homepage": "https://github.com/awecode/surilo#readme"
+  "homepage": "https://github.com/awecode/surilo#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0",
+    "redux": "^3.6.0"
+  }
 }
