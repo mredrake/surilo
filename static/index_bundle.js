@@ -14740,7 +14740,6 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 class Header extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
   constructor(props) {
     super(props);
-
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
