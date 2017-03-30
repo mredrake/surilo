@@ -12,6 +12,7 @@ module.exports = {
     ],
     output: {
         path: __dirname + '/static',
+        publicPath: __dirname + '/static',
         filename: "index_bundle.js"
     },
     module: {

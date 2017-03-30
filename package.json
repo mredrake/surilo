@@ -4,7 +4,7 @@
   "description": "Authentic music site",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack --watch",
     "prod": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
