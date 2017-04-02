@@ -9,7 +9,9 @@
 
 
 <div id="app"></div>
-
+<script>
+    window._data = {{ tracks|safe }}
+</script>
 <script src="{% static 'index_bundle.js' %}"></script>
 </body>
 </html>

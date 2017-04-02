@@ -1,5 +1,14 @@
+import json
+
 from django.shortcuts import render
+
+from .models import Track
+from .serializers import TrackSerializer
 
 
 def index(request):
-    return render(request, 'index.html')
+    tracks = Track.objects.all()
+    context = {
+        'tracks': json.dumps(TrackSerializer(tracks, many=True).data)
+    }
+    return render(request, 'index.html', context)
