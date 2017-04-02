@@ -15634,8 +15634,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-const initial_state = {
-    tracks: [{ id: 1, title: 'a' }, { id: 2, title: 'b' }]
+const initial_state = window._state || {
+    'tracks': []
 };
 
 let store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_redux__["a" /* createStore */])(__WEBPACK_IMPORTED_MODULE_5__reducers_index__["a" /* default */], initial_state, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

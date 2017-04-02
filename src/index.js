@@ -8,9 +8,9 @@ import tracks from './reducers/index'
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-const initial_state = {
-    tracks: [{id: 1, title: 'a'}, {id: 2, title: 'b'}]
-}
+const initial_state = window._state || {
+        'tracks': []
+    }
 
 let store = createStore(tracks, initial_state,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
