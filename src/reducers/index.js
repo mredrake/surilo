@@ -1,6 +1,9 @@
-const tracks = (state = [{id:1, title: 'a'}, {id: 2, title: 'b'}], action) => {
+const tracks = (state = {}, action) => {
     switch (action.type) {
+        case 'PLAY':
+            return Object.assign({}, state, {now_playing: action.yt});
         default:
+            console.log(action)
             return state
     }
 }

@@ -3,6 +3,7 @@ import Header from './Header'
 import Track from './Track'
 import TrackContainer from '../containers/Track'
 import TrackList from '../components/TrackList'
+import NowPlaying from "./NowPlaying";
 
 
 export default class App extends React.Component {
@@ -10,7 +11,14 @@ export default class App extends React.Component {
         return (
             <div>
                 <Header></Header>
-                <TrackList/>
+                <div className="row">
+                    <div className="col-8">
+                        <TrackList/>
+                    </div>
+                    <div className="col-4">
+                        <NowPlaying/>
+                    </div>
+                </div>
             </div>
         )
     }

@@ -9,7 +9,9 @@ import tracks from './reducers/index'
 import 'bootstrap/dist/css/bootstrap.css';
 
 const initial_state = window._state || {
-        'tracks': []
+        'tracks': [],
+        'now_playing': null,
+        'playlist': []
     }
 
 let store = createStore(tracks, initial_state,
@@ -21,3 +23,5 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 )
+
+export default store
