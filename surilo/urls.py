@@ -11,6 +11,7 @@ from django.conf import settings
 router = DefaultRouter()
 
 router.register(r'tracks', music_api.TrackViewSet, 'tracks')
+router.register(r'plays', music_api.PlayViewSet, 'plays')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

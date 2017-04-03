@@ -61,7 +61,7 @@ class Track(models.Model):
 class Play(models.Model):
     track = models.ForeignKey(Track, related_name='plays')
     datetime = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, blank=True)
+    user = models.ForeignKey(User, null=True, blank=True)
 
     def __str__(self):
         return str(self.track) + ' - ' + str(self.user)
