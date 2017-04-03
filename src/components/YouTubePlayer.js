@@ -1,18 +1,30 @@
 import React from "react";
 import {connect} from 'react-redux'
+import YouTube from "react-youtube"
 
 export class YouTubePlayer extends React.Component {
     render() {
-        if (this.props.now_playing) {
-            let url = "https://www.youtube.com/embed/" + this.props.now_playing + "?autoplay=1&origin=http://example.com"
-            return (
-                <iframe id="ytplayer" type="text/html" width="640" height="360"
-                        src={url} frameBorder="0"></iframe>
-            )
-        }else{
-            return <div>a</div>
-        }
-    }
+    const opts = {
+      height: '260',
+      width: '475',
+      playerVars: { // https://developers.google.com/youtube/player_parameters
+        autoplay: 1
+      }
+    };
+
+    return (
+      <YouTube
+        videoId={this.props.now_playing}
+        opts={opts}
+        onReady={this._onReady}
+      />
+    );
+  }
+
+  _onReady(event) {
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+  }
 }
 
 

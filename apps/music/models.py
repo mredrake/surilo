@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -55,3 +56,12 @@ class Track(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Play(models.Model):
+    track = models.ForeignKey(Track, related_name='plays')
+    datetime = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, blank=True)
+
+    def __str__(self):
+        return str(self.track) + ' - ' + str(self.user)
