@@ -1,8 +1,4 @@
-function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
-}
+import API from '../utils/api'
 
 const tracks = (state = {}, action) => {
     switch (action.type) {
@@ -10,24 +6,7 @@ const tracks = (state = {}, action) => {
             var payload = {
                 track: action.now_playing.id,
             }
-            fetch("/api/v1/plays/",
-                {
-                    credentials: "same-origin",
-                    headers: {
-                        "X-CSRFToken": getCookie("csrftoken"),
-                        "Accept": "application/json",
-                        "Content-Type": "application/json"
-                    },
-                    method: "POST",
-                    body: JSON.stringify(payload)
-                })
-                .then(function (res) {
-                    return res.json();
-                })
-                .then(function (data) {
-                    console.log(JSON.stringify(data))
-                })
-
+            API.post('plays/', payload)
             return Object.assign({}, state, {now_playing: action.now_playing})
         default:
             console.log(action)

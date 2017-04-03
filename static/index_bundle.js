@@ -15958,11 +15958,8 @@ function mapStateToProps(state) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
-}
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_api__ = __webpack_require__(457);
+
 
 const tracks = (state = {}, action) => {
     switch (action.type) {
@@ -15970,21 +15967,7 @@ const tracks = (state = {}, action) => {
             var payload = {
                 track: action.now_playing.id
             };
-            fetch("/api/v1/plays/", {
-                credentials: "same-origin",
-                headers: {
-                    "X-CSRFToken": getCookie("csrftoken"),
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                method: "POST",
-                body: JSON.stringify(payload)
-            }).then(function (res) {
-                return res.json();
-            }).then(function (data) {
-                console.log(JSON.stringify(data));
-            });
-
+            __WEBPACK_IMPORTED_MODULE_0__utils_api__["a" /* default */].post('plays/', payload);
             return Object.assign({}, state, { now_playing: action.now_playing });
         default:
             console.log(action);
@@ -45662,6 +45645,45 @@ exports.default = function () {
 };
 
 module.exports = exports['default'];
+
+/***/ }),
+/* 457 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class APIKlass {
+    constructor() {
+        this.base_url = '/api/v1/';
+        this.headers = {
+            "X-CSRFToken": this.getCookie("csrftoken"),
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        };
+    }
+
+    getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+
+    post(endpoint, payload) {
+        return fetch(this.base_url + endpoint, {
+            credentials: "same-origin",
+            headers: this.headers,
+            method: "POST",
+            body: JSON.stringify(payload)
+        }).then(function (res) {
+            return res.json();
+        });
+    }
+}
+/* unused harmony export APIKlass */
+
+
+const API = new APIKlass();
+
+/* harmony default export */ __webpack_exports__["a"] = (API);
 
 /***/ })
 /******/ ]);
