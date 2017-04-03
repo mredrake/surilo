@@ -11,7 +11,7 @@ export default class TrackContainer extends React.Component {
     onclick_handler() {
         store.dispatch({
             type: 'PLAY',
-            yt: this.props.track.yt
+            now_playing: this.props.track
         })
     }
 
