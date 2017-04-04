@@ -10,7 +10,9 @@ def index(request):
     tracks = Track.objects.all()
     tracks_data = TrackSerializer(tracks, many=True).data
     state = {
-        'tracks': tracks_data
+        'tracks': tracks_data,
+        'playlist': [],
+        'now_playing': None,
     }
     state = json.dumps(state)
     context = {

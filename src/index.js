@@ -16,6 +16,7 @@ const initial_state = window._state || {
 
 let store = createStore(tracks, initial_state,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+window.store = store
 
 ReactDOM.render(
     <Provider store={store}>

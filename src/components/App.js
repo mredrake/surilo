@@ -1,7 +1,6 @@
 import React from "react";
 import Header from './Header'
 import Track from './Track'
-import TrackContainer from '../containers/Track'
 import TrackList from '../components/TrackList'
 import NowPlaying from "./NowPlaying";
 

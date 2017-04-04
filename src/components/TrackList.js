@@ -1,6 +1,6 @@
 import React from "react";
-import Track from "../containers/Track";
 import {connect} from 'react-redux'
+import {Track} from "./Track";
 
 class TrackList extends React.Component {
     render() {
