@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from surilo.helpers.third_party import youtube_url_to_id
+
 
 class Label(models.Model):
     name = models.CharField(max_length=250)
@@ -53,6 +55,11 @@ class Track(models.Model):
     description = models.TextField(blank=True, null=True)
     mp3 = models.FileField(upload_to='tracks', blank=True, null=True)
     yt = models.CharField(max_length=255, blank=True, null=True, verbose_name='YouTube ID or URL')
+
+    def save(self, *args, **kwargs):
+        if self.yt.lower().startswith(('http', 'www.youtube', 'youtu.be', 'youtube.com')):
+            self.yt = youtube_url_to_id(self.yt)
+        super(Track, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
