@@ -5,3 +5,4 @@ surilo/settings/env.py
 *~
 db.sqlite3
 node_modules
+static/index_bundle.js

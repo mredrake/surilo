@@ -29,7 +29,7 @@ class Track extends React.Component {
             <div>
                 {image}
                 <div>{this.props.track.title}</div>
-                <div><a onClick={this.play.bind(this)}>Play</a></div>
+                <div><a onClick={this.play.bind(this)}>Play Now</a></div>
                 <div><a onClick={this.add_to_playlist.bind(this)}>Add to Playlist</a></div>
             </div>
         )
