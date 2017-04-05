@@ -9745,8 +9745,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_redux__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_redux__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap_dist_css_bootstrap_css__ = __webpack_require__(444);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap_dist_css_bootstrap_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_bootstrap_dist_css_bootstrap_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reducers_index__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_bootstrap_dist_css_bootstrap_css__ = __webpack_require__(444);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_bootstrap_dist_css_bootstrap_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_bootstrap_dist_css_bootstrap_css__);
+
 
 
 
@@ -9761,7 +9763,7 @@ const initial_state = window._state || {
     'playlist': []
 };
 
-let store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_redux__["a" /* createStore */])(tracks, initial_state, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+let store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_redux__["a" /* createStore */])(__WEBPACK_IMPORTED_MODULE_5__reducers_index__["a" /* default */], initial_state, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 window.store = store;
 
 __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -16873,8 +16875,78 @@ function mapStateToProps(state) {
 /* harmony default export */ __webpack_exports__["a"] = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_react_redux__["b" /* connect */])(mapStateToProps)(TrackList));
 
 /***/ }),
-/* 169 */,
-/* 170 */,
+/* 169 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_api__ = __webpack_require__(170);
+
+
+const tracks = (state = {}, action) => {
+    const track = action.track;
+    switch (action.type) {
+        case 'PLAY':
+            let payload = {
+                track: track.id
+            };
+            __WEBPACK_IMPORTED_MODULE_0__utils_api__["a" /* default */].post('plays/', payload);
+            return Object.assign({}, state, { now_playing: track });
+        case 'ADD':
+            let playlist = state.playlist.slice();
+            if (!playlist.map(tr => tr.id).includes(track.id)) {
+                // no duplicates
+                playlist.push(action.track);
+                return Object.assign({}, state, { playlist: playlist });
+            }
+            return state;
+        default:
+            console.log(action);
+            return state;
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (tracks);
+
+/***/ }),
+/* 170 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class APIKlass {
+    constructor() {
+        this.base_url = '/api/v1/';
+        this.headers = {
+            "X-CSRFToken": this.getCookie("csrftoken"),
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        };
+    }
+
+    getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+
+    post(endpoint, payload) {
+        return fetch(this.base_url + endpoint, {
+            credentials: "same-origin",
+            headers: this.headers,
+            method: "POST",
+            body: JSON.stringify(payload)
+        }).then(function (res) {
+            return res.json();
+        });
+    }
+}
+/* unused harmony export APIKlass */
+
+
+const API = new APIKlass();
+
+/* harmony default export */ __webpack_exports__["a"] = (API);
+
+/***/ }),
 /* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
