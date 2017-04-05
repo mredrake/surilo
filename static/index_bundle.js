@@ -7092,9 +7092,16 @@ module.exports = function(module) {
 
 
 class Track extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
-    onclick_handler() {
+    add_to_playlist() {
         __WEBPACK_IMPORTED_MODULE_2__index__["default"].dispatch({
             type: 'ADD',
+            track: this.props.track
+        });
+    }
+
+    play() {
+        __WEBPACK_IMPORTED_MODULE_2__index__["default"].dispatch({
+            type: 'PLAY',
             track: this.props.track
         });
     }
@@ -7102,9 +7109,9 @@ class Track extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     render() {
         let image = null;
         if (this.props.track.cover_image) {
-            image = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { height: 150, src: this.props.track.cover_image, onClick: this.onclick_handler.bind(this) });
+            image = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { height: 150, src: this.props.track.cover_image });
         } else {
-            image = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: '/static/no_cover.png' });
+            image = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { height: 150, src: '/static/no_image.svg' });
         }
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
@@ -7114,6 +7121,24 @@ class Track extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                 'div',
                 null,
                 this.props.track.title
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'a',
+                    { onClick: this.play.bind(this) },
+                    'Play'
+                )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'a',
+                    { onClick: this.add_to_playlist.bind(this) },
+                    'Add to Playlist'
+                )
             )
         );
     }
@@ -16737,7 +16762,7 @@ class PlayList extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                 "div",
                 { className: "card" },
                 this.props.playlist.map((track, index) => {
-                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_Track__["a" /* PlaylistTrack */], { key: 'a' + track.id, track: track });
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_Track__["a" /* PlaylistTrack */], { key: track.id, track: track });
                 })
             )
         );

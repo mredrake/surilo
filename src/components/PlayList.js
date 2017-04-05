@@ -11,7 +11,7 @@ export class PlayList extends React.Component {
                 <div className="card">
                     {this.props.playlist.map((track, index) => {
                         return (
-                            <PlaylistTrack key={'a' + track.id} track={track}/>
+                            <PlaylistTrack key={track.id} track={track}/>
                         )
                     })
                     }

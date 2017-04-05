@@ -4,9 +4,16 @@ import store from '../index'
 
 
 class Track extends React.Component {
-    onclick_handler() {
+    add_to_playlist() {
         store.dispatch({
             type: 'ADD',
+            track: this.props.track
+        })
+    }
+
+    play() {
+        store.dispatch({
+            type: 'PLAY',
             track: this.props.track
         })
     }
@@ -14,14 +21,16 @@ class Track extends React.Component {
     render() {
         let image = null
         if (this.props.track.cover_image) {
-            image = <img height={150} src={this.props.track.cover_image} onClick={this.onclick_handler.bind(this)}/>
+            image = <img height={150} src={this.props.track.cover_image}/>
         } else {
-            image = <img src='/static/no_cover.png'/>
+            image = <img height={150} src='/static/no_image.svg'/>
         }
         return (
             <div>
                 {image}
                 <div>{this.props.track.title}</div>
+                <div><a onClick={this.play.bind(this)}>Play</a></div>
+                <div><a onClick={this.add_to_playlist.bind(this)}>Add to Playlist</a></div>
             </div>
         )
     }
