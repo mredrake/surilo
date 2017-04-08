@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from 'react-redux'
 import YouTube from "react-youtube"
 
-export class Player extends React.Component {
+export class PlayerContainer extends React.Component {
     render() {
         const opts = {
             height: '260',
@@ -45,4 +45,4 @@ function mapStateToProps(state) {
     )
 }
 
-export default connect(mapStateToProps)(Player)
+export default connect(mapStateToProps)(PlayerContainer)

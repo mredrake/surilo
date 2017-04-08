@@ -8,6 +8,7 @@ export default class NowPlaying extends React.Component {
         return (
             <div>
                 <PlayListContainer/>
+                {/*<PlayerContainer/>*/}
                 <Player/>
             </div>
         )
