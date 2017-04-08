@@ -1,6 +1,6 @@
 import React from "react";
-import {PlaylistTrack} from "../components/Track";
 import {connect} from 'react-redux'
+import {PlaylistTrackContainer} from "../containers/TrackContainer";
 
 
 export class PlayList extends React.Component {
@@ -11,7 +11,7 @@ export class PlayList extends React.Component {
                 <div className="card">
                     {this.props.playlist.map((track, index) => {
                         return (
-                            <PlaylistTrack key={track.id} track={track}/>
+                            <PlaylistTrackContainer key={track.id} track={track}/>
                         )
                     })
                     }
@@ -20,13 +20,3 @@ export class PlayList extends React.Component {
         )
     }
 }
-
-function mapStateToProps(state) {
-    return (
-        {
-            playlist: state.playlist
-        }
-    )
-}
-
-export default connect(mapStateToProps)(PlayList)

@@ -1,23 +1,6 @@
 import React from "react";
-import {connect} from 'react-redux';
-import store from '../index'
-
 
 class Track extends React.Component {
-    add_to_playlist() {
-        store.dispatch({
-            type: 'ADD',
-            track: this.props.track
-        })
-    }
-
-    play() {
-        store.dispatch({
-            type: 'PLAY',
-            track: this.props.track
-        })
-    }
-
     render() {
         let image = null
         if (this.props.track.cover_image) {
@@ -29,8 +12,8 @@ class Track extends React.Component {
             <div>
                 {image}
                 <div>{this.props.track.title}</div>
-                <div><a onClick={this.play.bind(this)}>Play Now</a></div>
-                <div><a onClick={this.add_to_playlist.bind(this)}>Add to Playlist</a></div>
+                <div><a onClick={this.props.play}>Play Now</a></div>
+                <div><a onClick={this.props.add_to_playlist}>Add to Playlist</a></div>
             </div>
         )
     }
@@ -45,13 +28,5 @@ class PlaylistTrack extends React.Component {
         )
     }
 }
-
-const mapStateToProps = function (store) {
-    return {
-        tracks: store.tracks
-    }
-}
-
-connect(mapStateToProps)(Track)
 
 export {Track, PlaylistTrack}
