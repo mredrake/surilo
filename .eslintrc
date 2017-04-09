@@ -1,0 +1,30 @@
+{
+  "extends": "eslint-config-airbnb",
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "arrow-body-style": ["error", "always"],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "jsx-quotes": ["error", "prefer-single"],
+    "key-spacing": ["error", { "align": "colon" }],
+    "max-len": 0,
+    "comma-dangle": 0,
+    "no-underscore-dangle": 0,
+    "react/forbid-prop-types": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/react-in-jsx-scope": 0
+  }
+}

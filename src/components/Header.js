@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
-
-export default class Header extends React.Component {
+export default class Header extends Component {
    constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -10,11 +9,13 @@ export default class Header extends React.Component {
       isOpen: false
     };
   }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+
   render() {
     return (
       <div>
