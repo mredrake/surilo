@@ -5,8 +5,8 @@ import YouTube from 'react-youtube';
 export class PlayerContainer extends Component {
   render() {
     const opts = {
-      height: '260',
-      width: '475',
+      height    : '260',
+      width     : '475',
       playerVars: { // https://developers.google.com/youtube/player_parameters
         autoplay: 1
       }
@@ -15,33 +15,32 @@ export class PlayerContainer extends Component {
     if (this.props.now_playing && this.props.now_playing.yt) {
       return (
         <YouTube
-            videoId={this.props.now_playing.yt}
-            opts={opts}
-            onReady={this._onReady}
-        />
-      );
-    }else{
-      return (
-        <YouTube
-          videoId={null}
+          videoId={this.props.now_playing.yt}
           opts={opts}
           onReady={this._onReady}
         />
       );
     }
+    return (
+      <YouTube
+        videoId={null}
+        opts={opts}
+        onReady={this._onReady}
+      />
+    );
   }
 
   _onReady(event) {
       // access to player in all event handlers via event.target
-      event.target.pauseVideo();
+    event.target.pauseVideo();
   }
 }
 
 function mapStateToProps(state) {
   return (
-    {
-      now_playing: state.now_playing
-    }
+  {
+    now_playing: state.now_playing
+  }
   );
 }
 

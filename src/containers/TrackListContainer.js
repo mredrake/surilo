@@ -24,16 +24,16 @@ class TrackListContainer extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addToPlaylist: function(track) {
+    addToPlaylist(track) {
       dispatch({
-          type: 'ADD',
-          track: track
+        type: 'ADD',
+        track
       });
     },
-    play: function(track) {
+    play(track) {
       dispatch({
         type: 'PLAY',
-        track: track
+        track
       });
     }
   };

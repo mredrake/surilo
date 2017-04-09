@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 
 export default class PlayList extends Component {
-  renderPlayLists () {
+  renderPlayLists() {
     const self = this;
     return this.props.playlist.map((track) => {
       const playNow = self.props.play.bind(self, track);
@@ -10,9 +10,9 @@ export default class PlayList extends Component {
       return (
         <div key={track.id}>
           {track.title}
-          <Button size='sm' outline color="primary" onClick={playNow}>Play Now</Button>
+          <Button size='sm' outline color='primary' onClick={playNow}>Play Now</Button>
         </div>
-      )
+      );
     });
   }
 
@@ -21,14 +21,13 @@ export default class PlayList extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
-      <div className="playlist">
+      <div className='playlist'>
         <h1>Playlist</h1>
-        <div className="card">
-        { this.props.playlist.length ? this.renderPlayLists() : this.emptyMessage() }
+        <div className='card'>
+          { this.props.playlist.length ? this.renderPlayLists() : this.emptyMessage() }
         </div>
       </div>
-    )
+    );
   }
 }

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import PlayListContainer from "../containers/PlayListContainer";
-import PlayerContainer from "../containers/PlayerContainer";
+import PlayListContainer from '../containers/PlayListContainer';
+import PlayerContainer from '../containers/PlayerContainer';
 
 const NowPlaying = () => {
   return (
@@ -10,6 +10,6 @@ const NowPlaying = () => {
       <PlayerContainer />
     </div>
   );
-}
+};
 
 export default NowPlaying;

@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import PlayList from "../components/PlayList";
+import PlayList from '../components/PlayList';
 
 export class PlayListContainer extends Component {
   render() {
     return (
-      <div className="playlist">
+      <div className='playlist'>
         <h1>Playlist</h1>
-        <div className="card">
-          <PlayList playlist={this.props.playlist} play={this.props.play}/>
+        <div className='card'>
+          <PlayList playlist={this.props.playlist} play={this.props.play} />
         </div>
       </div>
     );
@@ -18,10 +18,10 @@ export class PlayListContainer extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    play: function(track) {
+    play(track) {
       dispatch({
         type: 'PLAY',
-        track: track
+        track
       });
     }
   };
@@ -29,9 +29,9 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return (
-    {
-      playlist: state.playlist
-    }
+  {
+    playlist: state.playlist
+  }
   );
 }
 
