@@ -1,17 +1,15 @@
-import React from "react";
-import PlayListContainer from "../containers/PlayListContainer";
-import {PlayerContainer} from "../containers/PlayerContainer";
-import Player from "./Player";
+import React from 'react';
 
-export default class NowPlaying extends React.Component {
-    render() {
-        return (
-            <div>
-                <PlayListContainer/>
-                {/*<PlayerContainer/>*/}
-                <Player/>
-            </div>
-        )
+import PlayListContainer from '../containers/PlayListContainer';
+import PlayerContainer from '../containers/PlayerContainer';
 
-    }
-}
+const NowPlaying = () => {
+  return (
+    <div>
+      <PlayListContainer />
+      <PlayerContainer />
+    </div>
+  );
+};
+
+export default NowPlaying;

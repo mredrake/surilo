@@ -6,6 +6,8 @@
   "scripts": {
     "start": "webpack --watch",
     "prod": "webpack -p",
+    "lint": "./node_modules/eslint/bin/eslint.js ./src/**/*",
+    "lint_fix": "./node_modules/eslint/bin/eslint.js ./src/**/* --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -42,6 +44,11 @@
     "babel-loader": "^6.4.1",
     "babel-preset-react": "^6.23.0",
     "css-loader": "^0.27.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
     "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.28.0",
     "node-sass": "^4.5.2",

@@ -1,27 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from './components/App'
-import {createStore} from 'redux'
-import {Provider} from 'react-redux'
-import tracks from './reducers/index'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
-const initial_state = window._state || {
-        'tracks': [],
-        'now_playing': null,
-        'playlist': []
-    }
-
-let store = createStore(tracks, initial_state,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-window.store = store
+import App from './components/App';
+import store from './store';
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('app')
-)
-
-export default store
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+);

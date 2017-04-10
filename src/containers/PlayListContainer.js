@@ -1,20 +1,38 @@
-import React from "react";
-import {connect} from 'react-redux'
-import {PlayList} from "../components/PlayList";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import PlayList from '../components/PlayList';
 
-export class PlayListContainer extends React.Component {
-    render() {
-        return <PlayList playlist={is.props.playlist}/>
+export class PlayListContainer extends Component {
+  render() {
+    return (
+      <div className='playlist'>
+        <h1>Playlist</h1>
+        <div className='card'>
+          <PlayList playlist={this.props.playlist} play={this.props.play} />
+        </div>
+      </div>
+    );
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    play(track) {
+      dispatch({
+        type: 'PLAY',
+        track
+      });
     }
+  };
 }
 
 function mapStateToProps(state) {
-    return (
-        {
-            playlist: state.playlist
-        }
-    )
+  return (
+  {
+    playlist: state.playlist
+  }
+  );
 }
 
-export default connect(mapStateToProps)(PlayList)
+export default connect(mapStateToProps, mapDispatchToProps)(PlayList);
