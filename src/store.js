@@ -1,6 +1,11 @@
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
 
 import tracks from './reducers/index';
+import api from "./middlewares/api";
+
+const middlewares = applyMiddleware(reduxThunk, api);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = window._state || {
   tracks     : [],
@@ -11,5 +16,5 @@ const initialState = window._state || {
 export default createStore(
   tracks,
   initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(middlewares)
 );

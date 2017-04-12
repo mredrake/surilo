@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import PlayList from '../components/PlayList';
+import { play } from '../actions';
 
 export class PlayListContainer extends Component {
   render() {
@@ -19,10 +20,7 @@ export class PlayListContainer extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     play(track) {
-      dispatch({
-        type: 'PLAY',
-        track
-      });
+      dispatch(play(play));
     }
   };
 }
