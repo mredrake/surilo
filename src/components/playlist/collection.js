@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
 
-export default class PlayList extends Component {
+import PlaylistItem from './item';
+
+export default class PlayListCollection extends Component {
   renderPlayLists() {
     const self = this;
     return this.props.playlist.map((track) => {
-      const playNow = self.props.play.bind(self, track);
-
-      return (
-        <div key={track.id}>
-          {track.title}
-          <Button size='sm' outline color='primary' onClick={playNow}>Play Now</Button>
-        </div>
-      );
+      return <PlaylistItem key={track.id} play={this.props.play} track={track} now_playing={this.props.now_playing} />;
     });
   }
 
@@ -23,7 +17,6 @@ export default class PlayList extends Component {
   render() {
     return (
       <div className='playlist'>
-        <h1>Playlist</h1>
         <div className='card'>
           { this.props.playlist.length ? this.renderPlayLists() : this.emptyMessage() }
         </div>

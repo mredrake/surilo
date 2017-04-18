@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import PlayList from '../components/PlayList';
+import PlayListCollection from '../components/playlist/collection';
 import { play } from '../actions';
 
 export class PlayListContainer extends Component {
@@ -10,7 +10,7 @@ export class PlayListContainer extends Component {
       <div className='playlist'>
         <h1>Playlist</h1>
         <div className='card'>
-          <PlayList playlist={this.props.playlist} play={this.props.play} />
+          <PlayListCollection playlist={this.props.playlist} play={this.props.play} now_playing={this.props.now_playing} />
         </div>
       </div>
     );
@@ -20,17 +20,16 @@ export class PlayListContainer extends Component {
 function mapDispatchToProps(dispatch) {
   return {
     play(track) {
-      dispatch(play(play));
+      dispatch(play(track));
     }
   };
 }
 
 function mapStateToProps(state) {
-  return (
-  {
-    playlist: state.playlist
-  }
-  );
+  return {
+    playlist: state.playlist,
+    now_playing: state.now_playing
+  };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayList);
+export default connect(mapStateToProps, mapDispatchToProps)(PlayListContainer);

@@ -13,3 +13,11 @@ export function play(track) {
     }
   };
 }
+
+
+export function addToPlaylist(track) {
+  return {
+    type: 'ADD',
+    payload: track
+  }
+}

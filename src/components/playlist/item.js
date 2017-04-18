@@ -1,0 +1,32 @@
+import React, { Component } from 'react';
+import { Button } from 'reactstrap';
+
+export default class PlayListItem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.play = this.props.play.bind(this, this.props.track);
+  }
+
+  renderPlayAction() {
+    return <Button size='sm' outline color='primary' onClick={this.play}>Play Now</Button>;
+  }
+
+  renderPlayStatus() {
+    return <b>[ Now Playing ]</b>;
+  }
+
+  isTrackNowPlaying() {
+    return this.props.now_playing && this.props.track.id === this.props.now_playing.id;
+  }
+
+  render() {
+    const track = this.props.track;
+    return (
+      <div key={track}>
+        {track.title}
+        { this.isTrackNowPlaying() ? this.renderPlayStatus() : this.renderPlayAction() }
+      </div>
+    );
+  }
+}

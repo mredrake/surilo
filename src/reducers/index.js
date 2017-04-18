@@ -1,25 +1,37 @@
 import API from '../utils/api';
 
+
+function upsertPlaylist(playlistArg, track) {
+  let playlist = playlistArg.slice();
+  if (!playlist.map((tr) => { return tr.id; }).includes(track.id)) {
+    playlist.push(track);
+  }
+  return playlist;
+}
+
+
 const tracks = (state = {}, action) => {
   console.log('Action Received:', action);
 
   switch (action.type) {
     case 'PLAY':
-      console.log('Play whatever');
-      return Object.assign({}, state, { now_playing: action.payload });
+      console.log('Action: PLAY');
+      const track = action.payload;
+      return Object.assign({}, state, {
+        now_playing: track,
+        playlist: upsertPlaylist(state.playlist, track)
+      });
     case 'PLAY_SUCCESS':
-      console.log('Play api call done');
+      console.log('Action: PLAY SUCCESS');
+      return state;
     case 'PLAY_ERROR':
       console.log('Error:', action);
-    case 'ADD':
-      console.log('ADDing')
-      const track = action.payload;
-      const playlist = state.playlist.slice();
-      if (!playlist.map((tr) => { return tr.id; }).includes(track.id)) { // no duplicates
-        playlist.push(action.track);
-        return Object.assign({}, state, { playlist });
-      }
       return state;
+    case 'ADD':
+      console.log('Action: ADD')
+      return Object.assign({}, state, {
+        playlist: upsertPlaylist(state.playlist, action.payload)
+      });
     default:
       return state;
   }
