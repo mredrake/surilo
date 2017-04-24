@@ -5,8 +5,8 @@ import PlaylistItem from './item';
 export default class PlayListCollection extends Component {
   renderPlayLists() {
     const self = this;
-    return this.props.playlist.map((track) => {
-      return <PlaylistItem key={track.id} play={this.props.play} track={track} now_playing={this.props.now_playing} />;
+    return this.props.playlist.map((track, index) => {
+      return <PlaylistItem key={index} play={this.props.play} track={track} now_playing={this.props.now_playing} />;
     });
   }
 
