@@ -1,6 +1,3 @@
-import API from '../utils/api';
-
-
 function upsertPlaylist(playlistArg, track) {
   let playlist = playlistArg.slice();
   if (!playlist.map((tr) => { return tr.id; }).includes(track.id)) {
