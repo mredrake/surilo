@@ -6,20 +6,15 @@ function getCookie(name) {
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-function loadDogSound(id) {
+function loadSound(id) {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     let context = new AudioContext();
     let request = new XMLHttpRequest();
     let url = '/play/' + id + '/';
-    let dogBarkingBuffer = null;
-    url = 'http://127.0.0.1:8000/media/tracks/1.mp3';
     request.open('POST', url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
     request.responseType = 'arraybuffer';
-
-
-    // Decode asynchronously
     request.onload = function () {
         context.decodeAudioData(request.response, function (buffer) {
             let source = context.createBufferSource();
@@ -29,22 +24,17 @@ function loadDogSound(id) {
         }, function (err) {
             console.log(err);
         });
-    }
-    //this is the encryption key
-    request.send("key=98753897358975387943");
+    };
+    request.send();
 }
 
 export class Mp3Player extends Component {
     componentDidMount() {
-
-
-// Fix up prefixing
-
-        loadDogSound(this.props.trackId);
+        loadSound(this.props.trackId);
     }
 
     render() {
-        return <span>Hello</span>;
+        return <span>Playing</span>;
     }
 
 }
