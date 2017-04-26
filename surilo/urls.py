@@ -16,6 +16,7 @@ router.register(r'plays', music_api.PlayViewSet, 'plays')
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', music_views.index, name='index'),
+    url(r'^play/(?P<pk>[0-9]+)/$', music_views.mp3, name='play'),
     url(r'^api/v1/', include(router.urls, namespace='api')),
 ]
 

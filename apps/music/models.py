@@ -56,6 +56,10 @@ class Track(models.Model):
     mp3 = models.FileField(upload_to='tracks', blank=True, null=True)
     yt = models.CharField(max_length=255, blank=True, null=True, verbose_name='YouTube ID or URL')
 
+    @property
+    def has_mp3(self):
+        return True if self.mp3 else False
+
     def save(self, *args, **kwargs):
         if self.yt.lower().startswith(('http', 'www.youtube', 'youtu.be', 'youtube.com')):
             self.yt = youtube_url_to_id(self.yt)

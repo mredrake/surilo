@@ -4,9 +4,11 @@ from .models import Track, Play
 
 
 class TrackSerializer(serializers.ModelSerializer):
+    has_mp3 = serializers.BooleanField()
+
     class Meta:
         model = Track
-        exclude = []
+        exclude = ['mp3', ]
 
 
 class PlaySerializer(serializers.ModelSerializer):
