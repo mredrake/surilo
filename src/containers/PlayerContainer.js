@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import YouTube from 'react-youtube';
-import Sound from 'react-sound';
 import {Mp3Player} from "../components/Mp3Player";
 
 export class PlayerContainer extends Component {
