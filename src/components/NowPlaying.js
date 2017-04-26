@@ -7,7 +7,7 @@ const NowPlaying = () => {
   return (
     <div>
       <PlayListContainer />
-      <PlayerContainer />
+      {/* <PlayerContainer /> */}
     </div>
   );
 };

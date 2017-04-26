@@ -6,7 +6,7 @@ export default class PlayListCollection extends Component {
   renderPlayLists() {
     const self = this;
     return this.props.playlist.map((track, index) => {
-      return <PlaylistItem key={index} play={this.props.play} track={track} now_playing={this.props.now_playing} />;
+      return <PlaylistItem key={index} index={index} play={this.props.play} track={track} now_playing={this.props.now_playing} />;
     });
   }
 

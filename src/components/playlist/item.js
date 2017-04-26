@@ -4,7 +4,6 @@ import { Button } from 'reactstrap';
 export default class PlayListItem extends Component {
   constructor(props) {
     super(props);
-
     this.play = this.props.play.bind(this, this.props.track);
   }
 
@@ -17,7 +16,7 @@ export default class PlayListItem extends Component {
   }
 
   isTrackNowPlaying() {
-    return this.props.now_playing && this.props.track.id === this.props.now_playing.id;
+    return this.props.now_playing && this.props.index === this.props.now_playing.index;
   }
 
   render() {

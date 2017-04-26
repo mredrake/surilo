@@ -4,32 +4,31 @@ function upsertPlaylist(playlistArg, track) {
     //     playlist.push(track);
     // }
     playlist.push(track);
-    return playlist;
+    return {playlist: playlist, index: playlist.length - 1};
 }
 
 
 const tracks = (state = {}, action) => {
     console.log('Action Received:', action);
-
     switch (action.type) {
-        case 'PLAY':
-            console.log('Action: PLAY');
+        case 'PLAY': {
             const track = action.payload;
+            let {playlist: playlist, index: index} = upsertPlaylist(state.playlist, track);
             return Object.assign({}, state, {
-                now_playing: track,
-                playlist: upsertPlaylist(state.playlist, track)
+                now_playing: Object.assign({}, track, {index: index}),
+                playlist: playlist,
             });
+        }
         case 'PLAY_SUCCESS':
-            console.log('Action: PLAY SUCCESS');
             return state;
         case 'PLAY_ERROR':
-            console.log('Error:', action);
             return state;
-        case 'ADD':
-            console.log('Action: ADD')
+        case 'ADD': {
+            const {playlist: playlist, index: index} = upsertPlaylist(state.playlist, action.payload);
             return Object.assign({}, state, {
-                playlist: upsertPlaylist(state.playlist, action.payload)
+                playlist: playlist
             });
+        }
         default:
             return state;
     }
