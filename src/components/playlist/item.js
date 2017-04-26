@@ -4,7 +4,7 @@ import { Button } from 'reactstrap';
 export default class PlayListItem extends Component {
   constructor(props) {
     super(props);
-    this.play = this.props.play.bind(this, this.props.track);
+    this.play = this.props.play.bind(this, this.props.track, this.props.index);
   }
 
   renderPlayAction() {

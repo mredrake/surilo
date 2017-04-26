@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import Track from '../components/Track';
-import {play, addToPlaylist} from '../actions';
+import {playAndAdd, addToPlaylist} from '../actions';
 
 class TrackListContainer extends Component {
     renderTracks() {
@@ -30,7 +30,7 @@ function mapDispatchToProps(dispatch) {
             dispatch(addToPlaylist(track));
         },
         play(track, key = null) {
-            dispatch(play(track));
+            dispatch(playAndAdd(track));
         }
     };
 }

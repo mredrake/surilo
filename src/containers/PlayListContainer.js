@@ -20,8 +20,8 @@ export class PlayListContainer extends Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        play(track) {
-            dispatch(play(track));
+        play(track, index) {
+            dispatch(play(track, index));
         }
     };
 }
