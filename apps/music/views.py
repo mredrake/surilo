@@ -1,9 +1,8 @@
 import json
 
-from django.http import HttpResponse, FileResponse
+from django.http import FileResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_http_methods
-from rest_framework.exceptions import PermissionDenied
 
 from .models import Track
 from .serializers import TrackSerializer
@@ -28,6 +27,6 @@ def index(request):
 def mp3(request, pk):
     track = get_object_or_404(Track, pk=pk)
     if not track.mp3:
-        return PermissionDenied()
+        raise Http404
     response = FileResponse(open(track.mp3.file.name, 'rb'), content_type='application/octet-stream')
     return response
