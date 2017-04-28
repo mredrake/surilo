@@ -2,12 +2,14 @@ import json
 
 from django.http import FileResponse, Http404
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_http_methods
 
 from .models import Track
 from .serializers import TrackSerializer
 
 
+@ensure_csrf_cookie
 def index(request):
     tracks = Track.objects.all()
     tracks_data = TrackSerializer(tracks, many=True).data
